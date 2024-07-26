@@ -323,7 +323,8 @@ body {
     flex-grow: 2;
     mix-blend-mode: luminosity;
     border-radius: 4px 4px 0px 0px;
-    height: calc(100% - 8px);
+    /* height: calc(100% - 8px); */
+    background-color:gray;
 
 
 }
@@ -702,6 +703,7 @@ body {
     align-items: center;
     text-align: center;
     box-shadow: -10px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    padding:6px;
 }
 
 .tab .timbul::after {
@@ -936,7 +938,7 @@ body {
 }
 
 #tabs.close {
-    right: -100%;
+    right: -110%;
 }
 
 .stamp {
@@ -987,7 +989,7 @@ body {
     #tabs {
         position: absolute;
         z-index: 99;
-        right: -100%;
+        right: -110%;
         width: 70%;
     }
 
@@ -1015,8 +1017,8 @@ body {
         display: block;
     }
 
-    .tab-content {
-        width: 90%;
+    .tab-content.front {
+        width: 70%;
     }
 
     .kategories {
@@ -1060,9 +1062,8 @@ body {
     #tabs {
         position: absolute;
         z-index: 99;
-        right: -100%;
+        right: -110%;
         width: 90%;
-        margin-right: -50px;
     }
 
     #list-paper {
@@ -1074,6 +1075,10 @@ body {
         display: block;
         margin: auto;
         width: 80%;
+    }
+
+    .tab-content.front {
+        width:80%;
     }
 
     #next-paper {
@@ -1250,7 +1255,7 @@ body {
     justify-content: center;
     align-items: center;
     position: absolute;
-    left: calc(50% - 77px);
+    left: 0;
     right: 0;
     margin: auto;
     top: 0;
@@ -1343,3 +1348,28 @@ body {
 #loading-newspaper.hide {
     animation: bounceOut 0.5s forwards;
 }
+
+.link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0.1em;
+    background-color: hotpink;
+    opacity: 1;
+    transform: translate3d(-100%, 0, 0);
+    transition: opacity 300ms, transform 300ms;
+  }
+
+  /* Slide in */
+link {
+    overflow: hidden;
+  }
+  
+
+  .link:hover::after,
+    .link:focus::after {
+    opacity: 1;
+    transform: translate3d(0, 0.2em, 0);
+    }
