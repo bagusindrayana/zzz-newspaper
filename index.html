@@ -36,14 +36,12 @@
                 <div class="heading-red heading kategori">NASIONAL</div>
 
             </div>
-            <div class="box box-1 bg-dark">
-                <div class="feature-image item ">
-                    <div class="bg-img bg-light">
-                        <div class="img post-1-image rounded-4"
+            <div class="box box-2 bg-dark">
+                <div class="feature-image item bg-light rounded-4">
+                    <div class="img post-1-image rounded-4"
                             style="background-image: url('https://placehold.co/600x400?text=Lorem ipsum dolor sit amet');">
                         </div>
-                    </div>
-                    <div class="caption bg-light">
+                    <div class="caption ">
                         <div class="fit post-1-title"> Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</div>
                     </div>
                 </div>
@@ -442,7 +440,7 @@
 
         const isOverflown = ({ clientWidth, scrollWidth, clientHeight, scrollHeight }) => clientWidth < scrollWidth || clientHeight < scrollHeight
 
-        const resizeText = ({ element, elements, minSize = 10, maxSize = 512, step = 1, unit = 'px', scale = 1,
+        const resizeText = ({ element, elements, minSize = 8, maxSize = 512, step = 1, unit = 'px', scale = 1,
             // marginOffset = 0, paddingOffset = 0
         }) => {
             (elements || [element]).forEach(el => {
@@ -634,7 +632,12 @@
            
         }
 
-        getBerita(-1);
+        window.addEventListener("load", (event) => {
+            console.log("page is fully loaded");
+            getBerita(-1);
+        });
+
+        
     </script>
     <script>
         function slideIn() {
