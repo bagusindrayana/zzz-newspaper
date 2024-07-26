@@ -356,7 +356,7 @@
                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                         stroke-width="2" d="M20 11A8.1 8.1 0 0 0 4.5 9M4 5v4h4m-4 4a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
                 </svg></button>
-                <span class="bounce" id="loading-newspaper">
+                <span id="loading-newspaper">
                     <div class="loader"></div>
                 </span>
         </div>
@@ -575,7 +575,7 @@
 
             });
             reOrderZindex();
-            slideIn();
+            
             setTimeout(() => {
                 resizeText({
                     elements: document.querySelectorAll('.heading'),
@@ -587,6 +587,7 @@
                     elements: document.querySelectorAll('.fit'),
                     step: 1,
                 });
+                slideIn();
             }, 200);
         }
 
@@ -616,7 +617,8 @@
             });
 
             setTimeout(() => {
-                document.getElementById('loading-newspaper').style.display = 'block';
+                document.getElementById('loading-newspaper').classList.remove('hide');
+                document.getElementById('loading-newspaper').classList.add('show');
                 //remove all .newspaper
                 news.forEach((paper) => {
                     paper.remove();
@@ -637,7 +639,8 @@
     <script>
         function slideIn() {
             nextPaper.style.display = 'none';
-            document.getElementById('loading-newspaper').style.display = 'none';
+            document.getElementById('loading-newspaper').classList.remove('show');
+            document.getElementById('loading-newspaper').classList.add('hide');
             const news = document.querySelectorAll('.newspaper');
             let delay = 100 * news.length;
             news.forEach((paper, index) => {
