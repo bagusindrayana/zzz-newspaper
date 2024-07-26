@@ -806,7 +806,7 @@ body {
 .kategories {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 1rem;
+    gap: 0px;
     max-height: 100%;
     padding-top: 16px;
 }
@@ -815,15 +815,20 @@ body {
     display: flex;
     justify-content: center;
     align-self: center;
-    padding: 16px;
+    padding: 1rem;
     background-color: #F17351;
-    margin: 16px;
+    margin: 1rem;
     text-transform: uppercase;
     color: #141714;
     cursor: unset;
     pointer-events: none;
     transition: all 0.5s;
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+}
+
+.kategori-item:hover {
+    scale: 1.05;
+    rotate: 5deg;
 }
 
 .tab-content.front .kategori-item {
@@ -844,6 +849,7 @@ body {
     margin: auto;
     transform: rotate(15deg);
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+    z-index: 99;
 }
 
 .kategori-item::after {
@@ -858,6 +864,7 @@ body {
     margin: auto;
     transform: rotate(20deg);
     box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.75);
+    z-index: 99;
 }
 
 #back-tab {
@@ -865,6 +872,11 @@ body {
     width: 50px;
     align-self: center;
     cursor: pointer;
+    transition: all 0.5s;
+}
+
+#back-tab.bounce:hover {
+    transform: scale(1.2);
 }
 
 #open-tab {
@@ -882,6 +894,11 @@ body {
     border-radius: 6px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
     cursor: pointer;
+    transition: all 0.5s;
+}
+
+#open-tab:hover {
+   scale:1.2;
 }
 
 #tabs.open {
@@ -939,7 +956,7 @@ body {
         position: absolute;
         z-index: 99;
         right: -100%;
-        width: 60%;
+        width: 70%;
     }
 
     #tabs.open {
@@ -968,6 +985,10 @@ body {
 
     .tab-content {
         width: 90%;
+    }
+
+    .kategories {
+        gap: 1rem;
     }
 
     .kategori-item {
@@ -1007,7 +1028,8 @@ body {
         position: absolute;
         z-index: 99;
         right: -100%;
-        width: 80%;
+        width: 90%;
+        margin-right: -50px;
     }
 
     #list-paper {
@@ -1111,13 +1133,13 @@ body {
 }
 
 .slide-in {
-    translate: -150% 0%;
+    translate: -200% 0%;
     animation: slideIn 1s forwards;
 }
 
 @keyframes slideIn {
     0% {
-        translate: -150% 0%;
+        translate: -200% 0%;
     }
 
     100% {
@@ -1195,7 +1217,7 @@ body {
     justify-content: center;
     align-items: center;
     position: absolute;
-    left: calc(50% - 75px);
+    left: calc(50% - 77px);
     right: 0;
     margin: auto;
     top: 0;
