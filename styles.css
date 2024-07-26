@@ -222,10 +222,12 @@ body {
 .heading-white {
     color: #FAF0E6;
     text-align: center;
-    display: block;
+    display: flex;
     position: relative;
     flex-grow: 1;
     max-height: calc(100% - 10px);
+    justify-content: center;
+    align-items: center;
 }
 
 .box {
