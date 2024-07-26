@@ -14,7 +14,7 @@
 <body>
 
     <template id="paper-1" data-post="4">
-        <div class="newspaper">
+        <div class="newspaper slide-in">
             <div class="header">
                 <div class="source">
                     <div class="fit sumber">
@@ -86,7 +86,7 @@
     </template>
 
     <template id="paper-2" data-post="6">
-        <div class="newspaper">
+        <div class="newspaper slide-in">
             <div class="header">
                 <div class="source">
                     <div class="fit sumber">
@@ -171,7 +171,7 @@
     </template>
 
     <template id="paper-3" data-post="6">
-        <div class="newspaper">
+        <div class="newspaper slide-in">
             <div class="header">
                 <div class="source">
                     <div class="fit sumber">
@@ -258,7 +258,7 @@
     </template>
 
     <template id="paper-4" data-post="6">
-        <div class="newspaper">
+        <div class="newspaper slide-in">
             <div class="header">
                 <div class="source">
                     <div class="fit sumber">
@@ -347,14 +347,17 @@
     <div class="container">
         <div id="list-paper">
 
-            <button id="next-paper"><svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px"
+            <button id="next-paper" class="bounce"><svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px"
                     viewBox="0 0 24 24">
                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                         stroke-width="2" d="M20 11A8.1 8.1 0 0 0 4.5 9M4 5v4h4m-4 4a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
                 </svg></button>
+                <span class="bounce" id="loading-newspaper">
+                    <div class="loader"></div>
+                </span>
         </div>
         <div id="tabs">
-            <div id="back-tab" style="display: none;">
+            <div id="back-tab" class="bounce" style="display: none;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 48 48">
                     <path fill="currentColor" fill-rule="evenodd" stroke="currentColor" stroke-linejoin="round"
                         stroke-width="4"
@@ -399,7 +402,7 @@
         </div>
     </div>
     <div id="open-tab">
-        
+
     </div>
     <script>
         var apiUrl = "https://scraping-berita.vercel.app/";
@@ -410,6 +413,63 @@
             ['nasional', 'internasional', 'ekonomi', 'olahraga', 'hiburan', 'gaya-hidup', 'teknologi'],
             ['nasional', 'megapolitan', 'regional', 'global', 'money', 'bola', 'tekno', 'lifestyle', 'health', 'otomotif']
         ];
+
+        var canNext = true;
+        const nextPaper = document.getElementById('next-paper');
+        const firstPaper = document.getElementById('paper-1');
+        const paperTemplate = [
+            document.getElementById('paper-2'),
+            document.getElementById('paper-3'),
+            document.getElementById('paper-4')
+        ]
+
+        let newspapers = [];
+        var curIndex = 0;
+
+        const tabParent = document.getElementById('tabs');
+        const openTabParent = document.getElementById('open-tab');
+
+        const tabs = document.querySelectorAll('.tab-content');
+
+        let curTab = -1;
+        let originalTab = null;
+
+        const backTab = document.getElementById('back-tab');
+
+        const isOverflown = ({ clientWidth, scrollWidth, clientHeight, scrollHeight }) => clientWidth < scrollWidth || clientHeight < scrollHeight
+
+        const resizeText = ({ element, elements, minSize = 10, maxSize = 512, step = 1, unit = 'px', scale = 1,
+            // marginOffset = 0, paddingOffset = 0
+        }) => {
+            (elements || [element]).forEach(el => {
+                let i = minSize
+                let overflow = false
+
+                const parent = el.parentNode
+
+                while (!overflow && i < maxSize) {
+                    el.style.fontSize = `${i}${unit}`
+                    overflow = isOverflown(parent)
+
+                    if (!overflow) i += step
+                }
+
+
+                // revert to last state where no overflow happened
+                el.style.fontSize = `${i - step}${unit}`;
+                el.style.transform = `scale(${scale}) translateY(-2%)`;
+
+                // var minMargin = i * marginOffset;
+                // parent.style.marginTop = minMargin + 'px';
+
+                // parent.style.marginBottom = minMargin + 'px';
+
+                // var minPadding = i * paddingOffset;
+                // // parent.style.paddingTop = minPadding + 'px';
+                // parent.style.paddingBottom = minPadding + 'px';
+
+            })
+        }
 
         function renderKategoris() {
             var tabs = document.querySelectorAll('.tab-content');
@@ -435,15 +495,7 @@
 
         renderKategoris();
 
-        const firstPaper = document.getElementById('paper-1');
-        const paperTemplate = [
-            document.getElementById('paper-2'),
-            document.getElementById('paper-3'),
-            document.getElementById('paper-4')
-        ]
-
-        let newspapers = [];
-        var curIndex = 0;
+       
 
 
         function renderPaper(paper, datas, attributes) {
@@ -484,10 +536,7 @@
             } else {
                 attr['.kategori'] = sumber[sumberIndex].toUpperCase();
             }
-
             renderPaper(firstPaper, datas, attr);
-
-
             const firstPaperData = firstPaper.dataset.post;
 
             //remove first data
@@ -522,6 +571,7 @@
 
             });
             reOrderZindex();
+            slideIn();
             setTimeout(() => {
                 resizeText({
                     elements: document.querySelectorAll('.heading'),
@@ -536,97 +586,80 @@
             }, 200);
         }
 
+     
+
         function getBerita(kategoriIndex) {
-            if(kategoriIndex > -1){
-                
+            if (kategoriIndex > -1) {
                 closeTab();
             }
             curIndex = 0;
-            //remove all .newspaper
-            document.querySelectorAll('.newspaper').forEach((paper) => {
-                paper.remove();
-            });
+            // //remove all .newspaper
+            // document.querySelectorAll('.newspaper').forEach((paper) => {
+            //     paper.remove();
+            // });
+            
 
             let url = apiUrl + sumber[sumberIndex] + '/';
             if (kategoriIndex > -1) {
                 url = url + kategori[sumberIndex][kategoriIndex]
             }
+            nextPaper.style.display = 'none';
+            
+            const news = document.querySelectorAll('.newspaper');
+            news.forEach((paper, index) => {
+                paper.classList.add('slide-up');
+                paper.style.animationDelay = index * 100 + 'ms';
+            });
 
-            fetch(url)
+            setTimeout(() => {
+                document.getElementById('loading-newspaper').style.display = 'block';
+                //remove all .newspaper
+                news.forEach((paper) => {
+                    paper.remove();
+                });
+                fetch(url)
                 .then(response => response.json())
                 .then(data => {
+                    
                     parseData(data, kategoriIndex);
                 });
+            }, (100 * news.length)+500);
+
+           
         }
 
         getBerita(-1);
     </script>
     <script>
-        //delay 500ms
-        const isOverflown = ({ clientWidth, scrollWidth, clientHeight, scrollHeight }) => clientWidth < scrollWidth || clientHeight < scrollHeight
+        function slideIn() {
+            nextPaper.style.display = 'none';
+            document.getElementById('loading-newspaper').style.display = 'none';
+            const news = document.querySelectorAll('.newspaper');
+            let delay = 100 * news.length;
+            news.forEach((paper, index) => {
+                paper.style.animationDelay = delay + 'ms';
+                delay -= 100;
+            });
 
-        const resizeText = ({ element, elements, minSize = 10, maxSize = 512, step = 1, unit = 'px', scale = 1,
-            // marginOffset = 0, paddingOffset = 0
-        }) => {
-            (elements || [element]).forEach(el => {
-                let i = minSize
-                let overflow = false
-
-                const parent = el.parentNode
-
-                while (!overflow && i < maxSize) {
-                    el.style.fontSize = `${i}${unit}`
-                    overflow = isOverflown(parent)
-
-                    if (!overflow) i += step
-                }
-
-
-                // revert to last state where no overflow happened
-                el.style.fontSize = `${i - step}${unit}`;
-                el.style.transform = `scale(${scale}) translateY(-2%)`;
-
-                // var minMargin = i * marginOffset;
-                // parent.style.marginTop = minMargin + 'px';
-
-                // parent.style.marginBottom = minMargin + 'px';
-
-                // var minPadding = i * paddingOffset;
-                // // parent.style.paddingTop = minPadding + 'px';
-                // parent.style.paddingBottom = minPadding + 'px';
-
-            })
+            setTimeout(() => {
+                news.forEach((paper, index) => {
+                    paper.classList.remove('slide-in');
+                    paper.style.animationDelay = '0ms';
+                });
+                nextPaper.style.display = 'flex';
+                
+                
+            }, (100 * news.length) + 1500);
         }
-
-        // setTimeout(() => {
-        //     resizeText({
-        //         elements: document.querySelectorAll('.heading'),
-        //         step: 0.5,
-        //         scale: 0.99
-        //     });
-
-        //     resizeText({
-        //         elements: document.querySelectorAll('.fit'),
-        //         step: 0.5,
-        //     });
-        // }, 200);
-
-
 
         function reOrderZindex() {
             const news = document.querySelectorAll('.newspaper');
             news.forEach((paper, index) => {
                 paper.style.zIndex = news.length - index;
             });
+
         }
 
-
-
-
-        //next paper, if click then add class front to next paper
-
-        var canNext = true;
-        const nextPaper = document.getElementById('next-paper');
         nextPaper.addEventListener('click', () => {
 
             if (!canNext) return;
@@ -667,10 +700,9 @@
     </script>
 
     <script>
-        const tabParent = document.getElementById('tabs');
-        const openTabParent = document.getElementById('open-tab');
+        
 
-        function closeTab(){
+        function closeTab() {
             const t = document.getElementById('tabs');
             //check if have class open
             if (t.classList.contains('open')) {
@@ -685,12 +717,7 @@
         });
 
         //onclick .tab-content
-        const tabs = document.querySelectorAll('.tab-content');
-
-        let curTab = -1;
-        let originalTab = null;
-
-        const backTab = document.getElementById('back-tab');
+        
         backTab.addEventListener('click', () => {
             closeContent(curTab);
             curTab = -1;

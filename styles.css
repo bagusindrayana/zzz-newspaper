@@ -446,7 +446,7 @@ body {
     width: 60px;
     height: 60px;
     position: absolute;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
@@ -457,6 +457,7 @@ body {
     color: white;
     transition: all 1s;
     border: none;
+    cursor: pointer;
 }
 
 #next-paper:hover {
@@ -533,6 +534,7 @@ body {
     transform: rotate(2deg);
     box-shadow: -10px 0px 10px 0px rgba(0, 0, 0, 0.5);
     transition: all 1s;
+    animation: slideInRight 1s forwards;
 }
 
 .tab {
@@ -1006,7 +1008,7 @@ body {
 
     #list-paper {
         position: absolute;
-        top: 4%;
+        top: 0%;
         bottom: 0;
         left: -13%;
         right: 0;
@@ -1016,8 +1018,8 @@ body {
     }
 
     #next-paper {
-        right: -30px;
-        bottom: -30px;
+        right: -20%;
+        bottom: 0px;
         width: 60px;
         height: 60px;
     }
@@ -1103,3 +1105,110 @@ body {
 
 
 }
+
+.slide-in {
+    translate: -150% 0%;
+    animation: slideIn 1s forwards;
+}
+
+@keyframes slideIn {
+    0% {
+        translate: -150% 0%;
+    }
+
+    100% {
+        translate: 0% 0%;
+    }
+}
+
+.slide-up {
+    translate: 0% 0%;
+    animation: slideUp 1s forwards;
+}
+
+@keyframes slideUp {
+    0% {
+        translate: 0% 0%;
+    }
+
+    100% {
+        translate: 0% -150%;
+    }
+}
+
+.bounce {
+    animation: bounce 0.3s forwards;
+}
+
+@keyframes bounce {
+    0% {
+        scale: 1;
+    }
+
+    30% {
+        scale: 1.2;
+    }
+
+    50% {
+        scale: 0.9;
+    }
+
+    70% {
+        scale: 1.1;
+    }
+
+    100% {
+        scale: 1;
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        translate: 150% 0%;
+    }
+
+    100% {
+        translate: 0% 0%;
+    }
+}
+
+#loading-newspaper {
+    width: 150px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+   
+    z-index: 9999;
+}
+
+.loader {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    background-color: #E6B098;
+    border: 2px solid #E6B098;
+    border-radius: 8px;
+    background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.25) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.25) 50%, rgba(0, 0, 0, 0.25) 75%, transparent 75%, transparent);
+    font-size: 30px;
+    background-size: 1em 1em;
+    box-sizing: border-box;
+    animation: barStripe 1s linear infinite;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+   
+  }
+  
+  @keyframes barStripe {
+    0% {
+      background-position: 1em 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  }
