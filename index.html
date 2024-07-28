@@ -13,7 +13,7 @@
 
 <body>
 
-    <template id="paper-1" data-post="4">
+    <template id="paper-1" data-post="['default','default','short']">
         <div class="newspaper slide-in">
             <div class="header">
                 <div class="source">
@@ -39,23 +39,21 @@
             <div class="box box-2 bg-dark">
                 <div class="feature-image item bg-light rounded-4">
                     <div class="img post-1-image rounded-4"
-                            style="background-image: url('https://placehold.co/600x400?text=Lorem ipsum dolor sit amet');">
-                        </div>
-                    <div class="caption ">
-                        <div class="fit post-1-title link"> Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</div>
+                        style="background-image: url('https://placehold.co/600x400?text=Lorem ipsum dolor sit amet');">
                     </div>
                 </div>
                 <div class="text-half text-light item">
-                    <div class="fit post-2-title link">Lorem ipsum dolor sit amet</div>
+                    <a class="fit post-1-title link">Lorem ipsum dolor sit amet</a>
                 </div>
             </div>
             <div class="box box-2">
                 <div class="feature-image ">
-                    <div class="img post-3-image"
-                        style="background-image: url('https://placehold.co/600x400?text=Lorem ipsum dolor sit amet');">
-                    </div>
                     <div class="caption bg-dark text-light  ">
-                        <div class="fit post-3-title link">Lorem ipsum dolor sit amet</div>
+                        <a class="fit post-2-title link">Lorem ipsum dolor sit amet</a>
+                    </div>
+
+                    <div class="img post-2-image"
+                        style="background-image: url('https://placehold.co/600x400?text=Lorem ipsum dolor sit amet');">
                     </div>
 
                 </div>
@@ -71,14 +69,14 @@
             </div>
             <div class="footer">
                 <div class="left text-light ">
-                    <div class="fit">
+                    <a class="fit">
                         NEWS
-                    </div>
+                    </a>
                 </div>
                 <div class="bg-light text-dark center ">
-                    <div class="fit post-4-title link">
-                        Lorem ipsum dolor sit amet
-                    </div>
+                    <a class="fit post-3-title link">
+                        Berita hari ini
+                    </a>
                 </div>
                 <div class="item-flex text-light right fit">
                     2024
@@ -87,8 +85,8 @@
         </div>
     </template>
 
-    <template id="paper-2" data-post="6">
-        <div class="newspaper slide-in">
+    <template id="paper-2" data-post="['default','short','long','long','short']">
+        <div class="newspaper slide-in paper-2">
             <div class="header">
                 <div class="source">
                     <div class="fit sumber">
@@ -109,9 +107,9 @@
 
             <div class="box box-1 box-flex-1 bg-dark">
                 <div class="text-light  item">
-                    <div class="fit post-1-title link">
+                    <a class="fit post-1-title link">
                         Lorem ipsum dolor sit amet
-                    </div>
+                    </a>
                 </div>
                 <div class="feature-image item ">
                     <div class="img post-1-image rounded-4"
@@ -128,41 +126,36 @@
                             style="background-image: url('https://placehold.co/600x400?text=Lorem ipsum dolor sit amet');">
                         </div>
                         <div class="caption ">
-                            <div class="fit post-2-title link">
+                            <a class="fit post-2-title link">
                                 Lorem ipsum dolor sit amet
-                            </div>
+                            </a>
                         </div>
                     </div>
                     <div class="left-border item">
-                        <div class="fit post-3-title link">
+                        <a class="fit post-3-title link">
                             Lorem ipsum dolor sit amet
-                        </div>
+                        </a>
                     </div>
 
                 </div>
             </div>
             <div class="box box-2 box-border box-grow text-dark">
-                <div class="box  box-grid-3">
+                <div class="box  box-flex-3">
 
                     <div class=" item">
-                        <div class="fit post-4-title link">
+                        <a class="fit post-4-title link">
                             Lorem ipsum dolor sit amet
-                        </div>
+                        </a>
                     </div>
-                    <div class="left-border  item">
 
-                        <div class="fit post-5-title link">
-                            Lorem ipsum dolor sit amet
-                        </div>
-                    </div>
                     <div class="feature-image item left-border">
-                        <div class="img mb-1 post-6-image"
+                        <div class="img post-5-image"
                             style="background-image: url('https://placehold.co/600x400?text=Lorem ipsum dolor sit amet');">
                         </div>
                         <div class="caption p-0 ">
-                            <div class="fit post-6-title link">
+                            <a class="fit post-5-title link">
                                 Lorem ipsum dolor sit amet
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -172,8 +165,8 @@
         </div>
     </template>
 
-    <template id="paper-3" data-post="6">
-        <div class="newspaper slide-in">
+    <template id="paper-3" data-post="['default','long','short','short','long']">
+        <div class="newspaper slide-in paper-3">
             <div class="header">
                 <div class="source">
                     <div class="fit sumber">
@@ -194,9 +187,9 @@
 
             <div class="box box-1 box-flex-1 bg-dark">
                 <div class="text-light  item">
-                    <div class="fit post-1-title link">
+                    <a class="fit post-1-title link">
                         Lorem ipsum dolor sit amet
-                    </div>
+                    </a>
                 </div>
                 <div class="feature-image item ">
                     <div class="img post-1-image rounded-4"
@@ -210,47 +203,49 @@
                 <div class="box box-grid-2">
 
                     <div class=" item">
-                        <div class="fit post-3-title link">
+                        <a class="fit post-3-title link">
                             Lorem ipsum dolor sit amet
-                        </div>
+                        </a>
                     </div>
                     <div class="feature-image item left-border">
                         <div class="img post-2-image"
                             style="background-image: url('https://placehold.co/600x400?text=Lorem ipsum dolor sit amet');">
                         </div>
                         <div class="caption ">
-                            <div class="fit post-2-title link">
+                            <a class="fit post-2-title link">
                                 Lorem ipsum dolor sit amet
-                            </div>
+                            </a>
                         </div>
                     </div>
 
                 </div>
             </div>
             <div class="box box-2 box-border box-grow text-dark">
-                <div class="box  box-grid-3">
+                <div class="box  box-flex-2">
                     <div class="feature-image item ">
-                        <div class="img mb-1 post-6-image"
+                        <div class="img post-5-image"
                             style="background-image: url('https://placehold.co/600x400?text=Lorem ipsum dolor sit amet');">
                         </div>
                         <div class="caption p-0 ">
-                            <div class="fit post-6-title link">
+                            <a class="fit post-5-title link">
                                 Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
-                            </div>
+                            </a>
 
                         </div>
                     </div>
-                    <div class=" item left-border">
-                        <div class="fit post-4-title link">
-                            Lorem ipsum dolor sit amet
+                    <div class=" item left-border flex box-flex-3">
+                        <div class="item">
+                            <a class="fit post-4-title link">
+                                Lorem ipsum dolor sit amet
+                            </a>
+                        </div>
+                        <div class="item feature-image p-0 m-0">
+                            <div class="img post-4-image rounded-4"
+                            style="background-image: url('https://placehold.co/600x400?text=Lorem ipsum dolor sit amet');">
+                        </div>
                         </div>
                     </div>
-                    <div class="left-border  item">
 
-                        <div class="fit post-5-title link">
-                            Lorem ipsum dolor sit amet
-                        </div>
-                    </div>
 
                 </div>
             </div>
@@ -259,8 +254,8 @@
         </div>
     </template>
 
-    <template id="paper-4" data-post="6">
-        <div class="newspaper slide-in">
+    <template id="paper-4" data-post="['default','long','short','short','long']">
+        <div class="newspaper slide-in paper-4">
             <div class="header">
                 <div class="source">
                     <div class="fit sumber">
@@ -281,9 +276,9 @@
 
             <div class="box box-1 box-flex-1 bg-dark">
                 <div class="text-light  item">
-                    <div class="fit post-1-title link">
+                    <a class="fit post-1-title link">
                         Lorem ipsum dolor sit amet
-                    </div>
+                    </a>
                 </div>
                 <div class="feature-image item ">
                     <div class="img post-1-image rounded-4"
@@ -295,27 +290,23 @@
             </div>
 
             <div class="box box-2 box-border box-grow text-dark">
-                <div class="box  box-grid-3">
+                <div class="box  box-flex-2">
 
-                    <div class=" item">
-                        <div class="fit post-2-title link">
-                            Lorem ipsum dolor sit amet
-                        </div>
-                    </div>
+
                     <div class="left-border  item">
 
-                        <div class="fit post-3-title link">
+                        <a class="fit post-2-title link">
                             Lorem ipsum dolor sit amet
-                        </div>
+                        </a>
                     </div>
                     <div class="feature-image item left-border">
-                        <div class="img mb-1 post-4-image"
+                        <div class="img post-3-image"
                             style="background-image: url('https://placehold.co/600x400?text=Lorem ipsum dolor sit amet');">
                         </div>
                         <div class="caption p-0">
-                            <div class="fit post-4-title link">
+                            <a class="fit post-3-title link">
                                 Lorem ipsum dolor sit amet
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -323,20 +314,20 @@
 
             <div class="box box-1 box-border box-grow text-dark">
                 <div class="box box-grid-2 ">
-                    <div class="feature-image item bg-dark text-light">
-                        <div class="img post-5-image"
+                    <div class="feature-image item bg-dark text-light m-1">
+                        <div class="img post-4-image"
                             style="background-image: url('https://placehold.co/600x400?text=Lorem ipsum dolor sit amet');">
                         </div>
                         <div class="caption ">
-                            <div class="fit post-5-title link">
+                            <a class="fit post-4-title link">
                                 Lorem ipsum dolor sit amet
-                            </div>
+                            </a>
                         </div>
                     </div>
                     <div class="left-border item">
-                        <div class="fit post-6-title link">
+                        <a class="fit post-5-title link">
                             Lorem ipsum dolor sit amet
-                        </div>
+                        </a>
                     </div>
 
                 </div>
@@ -357,7 +348,7 @@
                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                         stroke-width="2" d="M20 11A8.1 8.1 0 0 0 4.5 9M4 5v4h4m-4 4a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
                 </svg></button>
-                
+
         </div>
         <div id="tabs">
             <div id="back-tab" class="bounce" style="display: none;">
@@ -408,6 +399,7 @@
 
     </div>
     <script>
+        var loading = false;
         var apiUrl = "https://scraping-berita.vercel.app/";
         var sumber = ['tempo', 'cnnindonesia', 'kompas'];
         var sumberIndex = 0;
@@ -457,6 +449,8 @@
                     if (!overflow) i += step
                 }
 
+                parent.style.lineHeight = `${i - step}${unit}`;
+
 
                 // revert to last state where no overflow happened
                 el.style.fontSize = `${i - step}${unit}`;
@@ -498,24 +492,52 @@
 
         renderKategoris();
 
-       
+
 
 
         function renderPaper(paper, datas, attributes) {
-            const dataPost = paper.dataset.post;
+            const dataPost = JSON.parse(paper.dataset.post.replace(/'/g, '"'));
             const clone = paper.content.cloneNode(true);
-            for (let i = 0; i < dataPost; i++) {
+
+          
+           
+
+            //sort data with length of title charater
+            
+            const datasSort = JSON.parse(JSON.stringify(datas));
+           
+            datasSort.sort((a, b) => a.title.length - b.title.length);
+    
+
+            for (let i = 0; i < dataPost.length; i++) {
                 if (i >= datas.length) break;
                 const title = clone.querySelector('.post-' + (i + 1) + '-title');
                 const image = clone.querySelector('.post-' + (i + 1) + '-image');
+
+                if(dataPost[i] == 'short'){
+                    data = datasSort[0];
+                    //remove first data
+                    datasSort.shift();
+                    
+                } else if(dataPost[i] == 'long'){
+                    data = datasSort[datasSort.length - 1];
+                   
+                    //remove last data
+                    datasSort.pop();
+                } else {
+                    data = datasSort[0];
+                    //remove first data
+                    datasSort.shift();
+                }
+               
                 if (title) {
-                    title.innerHTML = datas[i].title;
+                    title.innerHTML = data.title;
                 }
                 if (image) {
-                    if (datas[i].image_full != null) {
-                        image.style.backgroundImage = 'url(' + datas[i].image_full + ')';
+                    if (data.image_full != null) {
+                        image.style.backgroundImage = 'url(' + data.image_full + ')';
                     } else {
-                        image.style.backgroundImage = 'url(' + datas[i].image_thumbnail + ')';
+                        image.style.backgroundImage = 'url(' + data.image_thumbnail + ')';
                     }
                 }
                 //loop key and value attributes
@@ -549,11 +571,10 @@
             var count = datas.length;
             //2 for first page
             //6 for each page
-            var pages = [];
             let pageNumber = 1;
-            for (var i = 0; i < count; i += 6) {
+            for (var i = 0; i < count; i += 5) {
                 var page = [];
-                for (var j = 0; j < 6; j++) {
+                for (var j = 0; j < 5; j++) {
                     if (i + j < count) {
                         page.push(datas[i + j]);
                     }
@@ -561,7 +582,6 @@
                 //random paperTemplate
                 var paperElement = paperTemplate[Math.floor(Math.random() * paperTemplate.length)];
                 renderPaper(paperElement, page, { '.sumber': 'PAGE ' + pageNumber });
-                pages.push(page);
                 pageNumber++;
             }
             //get .newspaper
@@ -574,7 +594,7 @@
 
             });
             reOrderZindex();
-            
+
             setTimeout(() => {
                 resizeText({
                     elements: document.querySelectorAll('.heading'),
@@ -590,9 +610,12 @@
             }, 200);
         }
 
-     
+
 
         function getBerita(kategoriIndex) {
+            if (loading) {
+                return;
+            }
             if (kategoriIndex > -1) {
                 closeTab();
             }
@@ -601,14 +624,14 @@
             // document.querySelectorAll('.newspaper').forEach((paper) => {
             //     paper.remove();
             // });
-            
+
 
             let url = apiUrl + sumber[sumberIndex] + '/';
             if (kategoriIndex > -1) {
                 url = url + kategori[sumberIndex][kategoriIndex]
             }
             nextPaper.style.display = 'none';
-            
+
             const news = document.querySelectorAll('.newspaper');
             news.forEach((paper, index) => {
                 paper.classList.add('slide-up');
@@ -616,6 +639,7 @@
             });
 
             setTimeout(() => {
+                loading = true;
                 document.getElementById('loading-newspaper').classList.remove('hide');
                 document.getElementById('loading-newspaper').classList.add('show');
                 //remove all .newspaper
@@ -623,14 +647,14 @@
                     paper.remove();
                 });
                 fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    
-                    parseData(data, kategoriIndex);
-                });
-            }, (100 * news.length)+500);
+                    .then(response => response.json())
+                    .then(data => {
 
-           
+                        parseData(data, kategoriIndex);
+                    });
+            }, (100 * news.length) + 500);
+
+
         }
 
         window.addEventListener("load", (event) => {
@@ -638,13 +662,14 @@
             getBerita(-1);
         });
 
-        
+
     </script>
     <script>
         function slideIn() {
             nextPaper.style.display = 'none';
             document.getElementById('loading-newspaper').classList.remove('show');
             document.getElementById('loading-newspaper').classList.add('hide');
+
             const news = document.querySelectorAll('.newspaper');
             let delay = 100 * news.length;
             news.forEach((paper, index) => {
@@ -658,8 +683,8 @@
                     paper.style.animationDelay = '0ms';
                 });
                 nextPaper.style.display = 'flex';
-                
-                
+
+                loading = false;
             }, (100 * news.length) + 1000);
         }
 
@@ -711,7 +736,7 @@
     </script>
 
     <script>
-        
+
 
         function closeTab() {
             const t = document.getElementById('tabs');
@@ -728,7 +753,7 @@
         });
 
         //onclick .tab-content
-        
+
         backTab.addEventListener('click', () => {
             closeContent(curTab);
             curTab = -1;
