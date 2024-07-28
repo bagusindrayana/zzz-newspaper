@@ -513,7 +513,7 @@
                 if (i >= datas.length) break;
                 const title = clone.querySelector('.post-' + (i + 1) + '-title');
                 const image = clone.querySelector('.post-' + (i + 1) + '-image');
-
+                var data = datasSort[i];
                 if(dataPost[i] == 'short'){
                     data = datasSort[0];
                     //remove first data
@@ -562,13 +562,14 @@
                 attr['.kategori'] = sumber[sumberIndex].toUpperCase();
             }
             renderPaper(firstPaper, datas, attr);
-            const firstPaperData = firstPaper.dataset.post;
+            const dataPost = JSON.parse(firstPaper.dataset.post.replace(/'/g, '"'));
+            const firstPaperData = dataPost.length;
 
             //remove first data
-            datas = datas.slice(firstPaperData);
+            const newDatas = datas.slice(firstPaperData);
 
             //count data
-            var count = datas.length;
+            var count = newDatas.length;
             //2 for first page
             //6 for each page
             let pageNumber = 1;
@@ -576,12 +577,12 @@
                 var page = [];
                 for (var j = 0; j < 5; j++) {
                     if (i + j < count) {
-                        page.push(datas[i + j]);
+                        page.push(newDatas[i + j]);
                     }
                 }
                 //random paperTemplate
                 var paperElement = paperTemplate[Math.floor(Math.random() * paperTemplate.length)];
-                renderPaper(paperElement, page, { '.sumber': 'PAGE ' + pageNumber });
+                renderPaper(paperElement, JSON.parse(JSON.stringify(page)), { '.sumber': 'PAGE ' + pageNumber });
                 pageNumber++;
             }
             //get .newspaper
