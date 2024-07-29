@@ -348,10 +348,10 @@
         </div>
     </template>
 
-    <div class="container">
-        <span id="loading-newspaper">
+    <div class="container" id="all-news">
+        <div id="loading-newspaper" class="loading">
             <div class="loader"></div>
-        </span>
+        </div>
         <div id="list-paper">
 
             <button id="next-paper" class="bounce"><svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px"
@@ -405,10 +405,20 @@
             </div>
 
         </div>
+        
     </div>
-    <div id="open-tab">
+    <div class="container" id="detail-news">
+       
+        <div class="newspaper t-0 b-0 l-0 r-0 m-auto" style="height: 90%;">
+            <p id="detail-text"></p>
+        </div>
 
+        <div class="loading w-100" id="loading-detail">
+            <div class="loader"></div>
+        </div>
+        
     </div>
+    <div id="open-tab"></div>
     <script>
         var loading = false;
         var apiUrl = "https://scraping-berita.vercel.app/";
@@ -441,6 +451,10 @@
         let originalTab = null;
 
         const backTab = document.getElementById('back-tab');
+
+        const allNews = document.getElementById('all-news');
+        const detailNews = document.getElementById('detail-news');
+        
 
         const isOverflown = ({ clientWidth, scrollWidth, clientHeight, scrollHeight }) => clientWidth < scrollWidth || clientHeight < scrollHeight
 
@@ -477,6 +491,18 @@
                 // parent.style.paddingBottom = minPadding + 'px';
 
             })
+        }
+
+        function onClickLink(){
+            const links = document.querySelectorAll('.link');
+            links.forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    allNews.classList.add('open-detail');
+                    detailNews.classList.add('open-detail');
+                    const slug = e.target.dataset.slug;
+                    getDetail(slug);
+                });
+            });
         }
 
         function renderKategoris() {
@@ -543,6 +569,7 @@
                
                 if (title) {
                     title.innerHTML = data.title;
+                    title.dataset.slug = data.slug;
                 }
                 if (image) {
                     if (data.image_full != null) {
@@ -562,6 +589,7 @@
                 }
 
             }
+           
             document.getElementById('list-paper').appendChild(clone);
         }
 
@@ -572,8 +600,11 @@
             } else {
                 attr['.kategori'] = sumber[sumberIndex].toUpperCase();
             }
-            renderPaper(firstPaper, datas, attr);
             const dataPost = JSON.parse(firstPaper.dataset.post.replace(/'/g, '"'));
+            //get first dataPost.length data
+            const firstData = datas.slice(0, dataPost.length);
+            renderPaper(firstPaper, firstData, attr);
+            
             const firstPaperData = dataPost.length;
 
             //remove first data
@@ -597,7 +628,7 @@
                 pageNumber++;
             }
             //get .newspaper
-            newspapers = document.querySelectorAll('.newspaper');
+            newspapers = document.querySelectorAll('#list-paper .newspaper');
             //loop newspaper and add transform rotate random from -5 to 5
 
             newspapers.forEach((paper) => {
@@ -606,6 +637,7 @@
 
             });
             reOrderZindex();
+            onClickLink();
 
             setTimeout(() => {
                 resizeText({
@@ -644,7 +676,7 @@
             }
             nextPaper.style.display = 'none';
 
-            const news = document.querySelectorAll('.newspaper');
+            const news = document.querySelectorAll('#list-paper .newspaper');
             news.forEach((paper, index) => {
                 paper.classList.add('slide-up');
                 paper.style.animationDelay = index * 100 + 'ms';
@@ -667,6 +699,23 @@
             }, (100 * news.length) + 500);
 
 
+        }
+
+
+        function getDetail(slug){
+            //loading-detail
+            document.getElementById('loading-detail').classList.remove('hide');
+            document.getElementById('loading-detail').classList.add('show');
+            const url = apiUrl +sumber[sumberIndex]+ '/' + slug;
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    document.getElementById('loading-detail').classList.remove('show');
+                    document.getElementById('loading-detail').classList.add('hide');
+
+                    document.getElementById('detail-text').innerHTML = data.content;
+                });
         }
 
         window.addEventListener("load", (event) => {

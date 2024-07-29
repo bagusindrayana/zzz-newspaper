@@ -56,7 +56,7 @@ body {
     height: 80vh;
     min-height: 924px; */
     height: 100%;
-    width: 100%;
+    width: min(calc(100% - 64px),800px);
     margin: 10px;
     background-color: #FAF0E6;
     border-radius: 6px;
@@ -220,6 +220,24 @@ body {
 .mt-1 {
     margin-top: 0.5rem !important;
 }
+.t-0 {
+    top: 0px !important;
+}
+.b-0 {
+    bottom: 0px !important;
+}
+
+.l-0 {
+    left: 0px !important;
+}
+
+.r-0 {
+    right: 0px !important;
+}
+
+.m-auto {
+    margin: auto !important;
+}
 
 .heading-red {
     color: #F17351;
@@ -318,7 +336,7 @@ body {
 }
 
 .feature-image .caption {
-    height: min(100px, 30%);
+    max-height: min(100px, 30%);
     /* text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -581,6 +599,10 @@ body {
 
 .m-0 {
     margin: 0px !important;
+}
+
+.w-100 {
+    width: 100% !important;
 }
 
 .rounded-4 {
@@ -891,6 +913,7 @@ body {
     pointer-events: none;
     transition: all 0.5s;
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+    text-align: center;
 }
 
 .kategori-item:hover {
@@ -1088,7 +1111,7 @@ body {
     }
 }
 
-#loading-newspaper {
+.loading {
     width: 50%;
     height: 20px;
     display: flex;
@@ -1180,11 +1203,11 @@ body {
     }
 }
 
-#loading-newspaper.show {
+.loading.show {
     animation: bounceIn 0.5s forwards;
 }
 
-#loading-newspaper.hide {
+.loading.hide {
     animation: bounceOut 0.5s forwards;
 }
 
@@ -1257,6 +1280,31 @@ a.link:focus {
     animation-play-state: paused;
 }
 
+.open-detail {
+    animation: openNewsDetail 0.5s forwards ease-in;
+}
+
+/* slide up with litte bounce */
+@keyframes openNewsDetail {
+    
+    0% {
+        transform: translateY(0%);
+    }
+    
+    30% {
+        transform: translateY(10%);
+    }
+   
+
+/*     
+    30% {
+        transform: translateY(2%);
+    } */
+    
+    100% {
+        transform: translateY(-100%);
+    }
+}
 
 /* tablet screen */
 
@@ -1339,7 +1387,7 @@ a.link:focus {
         left: -55px;
     }
 
-    #loading-newspaper {
+    .loading {
         width: 100%;
         justify-content: center;
         align-items: center;
@@ -1476,7 +1524,7 @@ a.link:focus {
         padding: 2px 10px 2px 10px;
     }
 
-    #loading-newspaper {
+    .loading {
         width: 100%;
         justify-content: center;
         align-items: center;
