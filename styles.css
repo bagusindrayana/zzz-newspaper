@@ -1447,6 +1447,7 @@ a.link:focus {
     }
 
     .newspaper {
+        width: min(calc(100% - 32px),800px);
         padding: 16px;
     }
 
