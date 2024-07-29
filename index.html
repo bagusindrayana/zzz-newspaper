@@ -14,7 +14,7 @@
 <body>
 
     <template id="paper-1" data-post="['default','default','short']">
-        <div class="newspaper slide-in">
+        <div class="newspaper slide-in pause">
             <div class="header">
                 <div class="source">
                     <div class="fit sumber">
@@ -48,14 +48,14 @@
             </div>
             <div class="box box-2">
                 <div class="feature-image ">
-                    <div class="caption bg-dark text-light">
-                        <a class="fit post-2-title link">Lorem ipsum dolor sit amet</a>
-                    </div>
+                   
 
                     <div class="img post-2-image"
                         style="background-image: url('https://placehold.co/600x400?text=Lorem ipsum dolor sit amet');">
                     </div>
-
+                    <div class="caption bg-dark text-light">
+                        <a class="fit post-2-title link">Lorem ipsum dolor sit amet</a>
+                    </div>
                 </div>
             </div>
             <div class="heading-1">
@@ -86,7 +86,7 @@
     </template>
 
     <template id="paper-2" data-post="['default','short','long','long','short']">
-        <div class="newspaper slide-in paper-2">
+        <div class="newspaper paper-2 slide-in pause">
             <div class="header">
                 <div class="source">
                     <div class="fit sumber">
@@ -131,10 +131,16 @@
                             </a>
                         </div>
                     </div>
-                    <div class="left-border item">
-                        <a class="fit post-3-title link">
-                            Lorem ipsum dolor sit amet
-                        </a>
+                    <div class="left-border item feature-image mini item bg-dark text-light">
+                        
+                        <div class="caption p-0 mb-1">
+                            <a class="fit post-3-title link">
+                                Lorem ipsum dolor sit amet
+                            </a>
+                        </div>
+                        <div class="img post-3-image"
+                            style="background-image: url('https://placehold.co/600x400?text=Lorem ipsum dolor sit amet');">
+                        </div>
                     </div>
 
                 </div>
@@ -166,7 +172,7 @@
     </template>
 
     <template id="paper-3" data-post="['default','long','short','short','long']">
-        <div class="newspaper slide-in paper-3">
+        <div class="newspaper paper-3 slide-in pause">
             <div class="header">
                 <div class="source">
                     <div class="fit sumber">
@@ -239,10 +245,10 @@
                                 Lorem ipsum dolor sit amet
                             </a>
                         </div>
-                        <div class="item feature-image p-0 m-0">
+                        <div class="item feature-image m-0 bg-dark">
                             <div class="img post-4-image rounded-4"
                             style="background-image: url('https://placehold.co/600x400?text=Lorem ipsum dolor sit amet');">
-                        </div>
+                            </div>
                         </div>
                     </div>
 
@@ -255,7 +261,7 @@
     </template>
 
     <template id="paper-4" data-post="['default','long','short','short','long']">
-        <div class="newspaper slide-in paper-4">
+        <div class="newspaper paper-4 slide-in pause">
             <div class="header">
                 <div class="source">
                     <div class="fit sumber">
@@ -293,11 +299,16 @@
                 <div class="box  box-flex-2">
 
 
-                    <div class="item">
-
-                        <a class="fit post-2-title link">
-                            Lorem ipsum dolor sit amet
-                        </a>
+                    <div class="item feature-image mini item bg-dark text-light">
+                        
+                        <div class="caption p-0 mb-1">
+                            <a class="fit post-2-title link">
+                                Lorem ipsum dolor sit amet
+                            </a>
+                        </div>
+                        <div class="img post-2-image"
+                            style="background-image: url('https://placehold.co/600x400?text=Lorem ipsum dolor sit amet');">
+                        </div>
                     </div>
                     <div class="feature-image item left-border">
                         <div class="img post-3-image mb-1"
@@ -433,7 +444,7 @@
 
         const isOverflown = ({ clientWidth, scrollWidth, clientHeight, scrollHeight }) => clientWidth < scrollWidth || clientHeight < scrollHeight
 
-        const resizeText = ({ element, elements, minSize = 8, maxSize = 512, step = 1, unit = 'px', scale = 1,
+        const resizeText = ({ element, elements, minSize = 10, maxSize = 512, step = 1, unit = 'px', scale = 1,
             // marginOffset = 0, paddingOffset = 0
         }) => {
             (elements || [element]).forEach(el => {
@@ -676,12 +687,14 @@
             news.forEach((paper, index) => {
                 paper.style.animationDelay = delay + 'ms';
                 delay -= 100;
+                paper.classList.remove('pause');
             });
 
             setTimeout(() => {
                 news.forEach((paper, index) => {
                     paper.classList.remove('slide-in');
                     paper.style.animationDelay = '0ms';
+                    
                 });
                 nextPaper.style.display = 'flex';
 
