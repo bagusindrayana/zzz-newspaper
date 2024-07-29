@@ -1292,6 +1292,8 @@ a.link:focus {
     animation: openNewsDetail 0.5s forwards ease-in;
 }
 
+
+
 /* slide up with litte bounce */
 @keyframes openNewsDetail {
 
@@ -1314,9 +1316,22 @@ a.link:focus {
     }
 }
 
+.content {
+    /* columns: 3; */
+    font-size: 12px;
+    height: 100%;
+    display: flex;
+    width: 100%;
+    position: relative;
+    margin: auto;
+}
+
 /* tablet screen */
 
 @media screen and (max-width: 1024px) {
+    .content {
+        /* columns: 2; */
+    }
     .box .item {
         padding: 4px;
     }

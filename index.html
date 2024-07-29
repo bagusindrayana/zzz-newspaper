@@ -48,7 +48,7 @@
             </div>
             <div class="box box-2">
                 <div class="feature-image ">
-                   
+
 
                     <div class="img post-2-image"
                         style="background-image: url('https://placehold.co/600x400?text=Lorem ipsum dolor sit amet');">
@@ -132,7 +132,7 @@
                         </div>
                     </div>
                     <div class="left-border item feature-image mini item bg-dark text-light">
-                        
+
                         <div class="caption p-0 mb-1">
                             <a class="fit post-3-title link">
                                 Lorem ipsum dolor sit amet
@@ -247,7 +247,7 @@
                         </div>
                         <div class="item feature-image m-0 bg-dark">
                             <div class="img post-4-image rounded-4"
-                            style="background-image: url('https://placehold.co/600x400?text=Lorem ipsum dolor sit amet');">
+                                style="background-image: url('https://placehold.co/600x400?text=Lorem ipsum dolor sit amet');">
                             </div>
                         </div>
                     </div>
@@ -300,7 +300,7 @@
 
 
                     <div class="item feature-image mini item bg-dark text-light">
-                        
+
                         <div class="caption p-0 mb-1">
                             <a class="fit post-2-title link">
                                 Lorem ipsum dolor sit amet
@@ -405,20 +405,22 @@
             </div>
 
         </div>
-        
+        <div id="open-tab"></div>
     </div>
     <div class="container" id="detail-news">
-       
+
         <div class="newspaper t-0 b-0 l-0 r-0 m-auto" style="height: 90%;">
-            <p id="detail-text"></p>
+            <div class="content">
+                <p id="detail-text" class="fit"></p>
+            </div>
         </div>
 
         <div class="loading w-100" id="loading-detail">
             <div class="loader"></div>
         </div>
-        
+
     </div>
-    <div id="open-tab"></div>
+
     <script>
         var loading = false;
         var apiUrl = "https://scraping-berita.vercel.app/";
@@ -454,7 +456,7 @@
 
         const allNews = document.getElementById('all-news');
         const detailNews = document.getElementById('detail-news');
-        
+
 
         const isOverflown = ({ clientWidth, scrollWidth, clientHeight, scrollHeight }) => clientWidth < scrollWidth || clientHeight < scrollHeight
 
@@ -493,7 +495,7 @@
             })
         }
 
-        function onClickLink(){
+        function onClickLink() {
             const links = document.querySelectorAll('.link');
             links.forEach((link) => {
                 link.addEventListener('click', (e) => {
@@ -536,29 +538,29 @@
             const dataPost = JSON.parse(paper.dataset.post.replace(/'/g, '"'));
             const clone = paper.content.cloneNode(true);
 
-          
-           
+
+
 
             //sort data with length of title charater
-            
+
             const datasSort = JSON.parse(JSON.stringify(datas));
-           
+
             datasSort.sort((a, b) => a.title.length - b.title.length);
-    
+
 
             for (let i = 0; i < dataPost.length; i++) {
                 if (i >= datas.length) break;
                 const title = clone.querySelector('.post-' + (i + 1) + '-title');
                 const image = clone.querySelector('.post-' + (i + 1) + '-image');
                 var data = datasSort[i];
-                if(dataPost[i] == 'short'){
+                if (dataPost[i] == 'short') {
                     data = datasSort[0];
                     //remove first data
                     datasSort.shift();
-                    
-                } else if(dataPost[i] == 'long'){
+
+                } else if (dataPost[i] == 'long') {
                     data = datasSort[datasSort.length - 1];
-                   
+
                     //remove last data
                     datasSort.pop();
                 } else {
@@ -566,7 +568,7 @@
                     //remove first data
                     datasSort.shift();
                 }
-               
+
                 if (title) {
                     title.innerHTML = data.title;
                     title.dataset.slug = data.slug;
@@ -589,7 +591,7 @@
                 }
 
             }
-           
+
             document.getElementById('list-paper').appendChild(clone);
         }
 
@@ -604,7 +606,7 @@
             //get first dataPost.length data
             const firstData = datas.slice(0, dataPost.length);
             renderPaper(firstPaper, firstData, attr);
-            
+
             const firstPaperData = dataPost.length;
 
             //remove first data
@@ -702,11 +704,11 @@
         }
 
 
-        function getDetail(slug){
+        function getDetail(slug) {
             //loading-detail
             document.getElementById('loading-detail').classList.remove('hide');
             document.getElementById('loading-detail').classList.add('show');
-            const url = apiUrl +sumber[sumberIndex]+ '/' + slug;
+            const url = apiUrl + sumber[sumberIndex] + '/' + slug;
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
@@ -715,6 +717,10 @@
                     document.getElementById('loading-detail').classList.add('hide');
 
                     document.getElementById('detail-text').innerHTML = data.content;
+                    resizeText({
+                        elements: document.querySelectorAll('.fit'),
+                        step: 1,
+                    });
                 });
         }
 
@@ -743,7 +749,7 @@
                 news.forEach((paper, index) => {
                     paper.classList.remove('slide-in');
                     paper.style.animationDelay = '0ms';
-                    
+
                 });
                 nextPaper.style.display = 'flex';
 
