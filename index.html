@@ -488,7 +488,7 @@
         const detailNews = document.getElementById('detail-news');
 
 
-        const isOverflown = ({ clientWidth, scrollWidth, clientHeight, scrollHeight }) => clientHeight < scrollHeight;
+        const isOverflown = ({ clientWidth, scrollWidth, clientHeight, scrollHeight }) => clientWidth < scrollWidth || clientHeight < scrollHeight;
         // const isOverflownHeight = ({ clientWidth, scrollWidth, clientHeight, scrollHeight }) => clientHeight < scrollHeight;
 
         const resizeText = ({ element, elements, minSize = 10, maxSize = 512, step = 1, unit = 'px', scale = 1,
@@ -768,7 +768,7 @@
             document.getElementById('loading-detail').classList.remove('hide');
             document.getElementById('loading-detail').classList.add('show');
             detailNews.querySelector('.sumber').innerHTML = sumber[sumberIndex].toUpperCase();
-            const url = apiUrl + sumber[sumberIndex] + '/' + slug;
+            const url = apiUrl + sumber[sumberIndex] + slug;
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
