@@ -33,7 +33,7 @@
             </div>
 
             <div class="heading-1">
-                <div class="heading-red heading kategori">NASIONAL</div>
+                <div class="heading-red heading kategori fit">NASIONAL</div>
 
             </div>
             <div class="box box-2 bg-dark">
@@ -61,7 +61,7 @@
             <div class="heading-1">
                 <div class="stripe"></div>
                 <div class="heading-white">
-                    <div class="heading">
+                    <div class="heading fit">
                         BERITA HARI INI
                     </div>
                 </div>
@@ -407,11 +407,34 @@
         </div>
         <div id="open-tab"></div>
     </div>
-    <div class="container" id="detail-news">
+    <div class="container " id="detail-news">
+        <div id="back-detail" class="d-none"></div>
+        <div class="newspaper t-0 b-0 l-0 r-0 m-auto p-0 scale-down d-none" style="height: 90%;">
+            <div class="m-2 w-auto flex flex-column" style="height: 100%;display: block;position: relative;">
+                <div class="header mb-1">
+                    <div class="source">
+                        <div class="sumber  fit-detail">
+                            SUMBER
+                        </div>
+                    </div>
+                    <div class="super-border flex  ">
+                        <div class="circle"></div>
+                        <div class="flex-row">
+                            <div class="top"></div>
+                            <div class="middle"></div>
+                            <div class="bottom"></div>
+                        </div>
+                    </div>
 
-        <div class="newspaper t-0 b-0 l-0 r-0 m-auto" style="height: 90%;">
-            <div class="content">
-                <p id="detail-text" class="fit"></p>
+                </div>
+
+                <div class="heading-1  mb-1 w-auto">
+                    <div class="heading-red heading title fit-detail">....</div>
+
+                </div>
+                <div class="content  mb-1">
+                    <div id="detail-text" class="fit-detail "></div>
+                </div>
             </div>
         </div>
 
@@ -458,9 +481,11 @@
         const detailNews = document.getElementById('detail-news');
 
 
-        const isOverflown = ({ clientWidth, scrollWidth, clientHeight, scrollHeight }) => clientWidth < scrollWidth || clientHeight < scrollHeight
+        const isOverflown = ({ clientWidth, scrollWidth, clientHeight, scrollHeight }) => clientHeight < scrollHeight;
+        // const isOverflownHeight = ({ clientWidth, scrollWidth, clientHeight, scrollHeight }) => clientHeight < scrollHeight;
 
         const resizeText = ({ element, elements, minSize = 10, maxSize = 512, step = 1, unit = 'px', scale = 1,
+            onlyWidth = false,
             // marginOffset = 0, paddingOffset = 0
         }) => {
             (elements || [element]).forEach(el => {
@@ -469,10 +494,10 @@
 
                 const parent = el.parentNode
 
+
                 while (!overflow && i < maxSize) {
                     el.style.fontSize = `${i}${unit}`
-                    overflow = isOverflown(parent)
-
+                    overflow = isOverflown(parent);
                     if (!overflow) i += step
                 }
 
@@ -481,7 +506,7 @@
 
                 // revert to last state where no overflow happened
                 el.style.fontSize = `${i - step}${unit}`;
-                el.style.transform = `scale(${scale}) translateY(-2%)`;
+                el.style.transform = `scale(${scale})`;
 
                 // var minMargin = i * marginOffset;
                 // parent.style.marginTop = minMargin + 'px';
@@ -495,12 +520,39 @@
             })
         }
 
+        document.getElementById('back-detail').addEventListener('click', () => {
+            
+            
+            allNews.classList.add('close-detail');
+            allNews.classList.remove('open-detail');
+
+            detailNews.classList.add('close-detail');
+            detailNews.classList.remove('open-detail');
+            
+            document.body.classList.add('move-up-bg');
+            document.body.classList.remove('move-down-bg');
+
+            document.getElementById('back-detail').classList.add('d-none');
+
+            setTimeout(() => {
+                detailNews.querySelector('.newspaper').classList.add('d-none');
+            }, 500);
+        });
+
         function onClickLink() {
             const links = document.querySelectorAll('.link');
             links.forEach((link) => {
                 link.addEventListener('click', (e) => {
+                    allNews.classList.remove('close-detail');
                     allNews.classList.add('open-detail');
+
+                    detailNews.classList.remove('close-detail');
                     detailNews.classList.add('open-detail');
+
+                    document.body.classList.remove('move-up-bg');
+                    document.body.classList.add('move-down-bg');
+
+                    document.getElementById('back-detail').classList.remove('d-none');
                     const slug = e.target.dataset.slug;
                     getDetail(slug);
                 });
@@ -642,11 +694,11 @@
             onClickLink();
 
             setTimeout(() => {
-                resizeText({
-                    elements: document.querySelectorAll('.heading'),
-                    step: 1,
-                    scale: 0.99
-                });
+                // resizeText({
+                //     elements: document.querySelectorAll('.heading'),
+                //     step: 1,
+                //     scale: 0.99
+                // });
 
                 resizeText({
                     elements: document.querySelectorAll('.fit'),
@@ -705,22 +757,41 @@
 
 
         function getDetail(slug) {
-            //loading-detail
+
             document.getElementById('loading-detail').classList.remove('hide');
             document.getElementById('loading-detail').classList.add('show');
+            detailNews.querySelector('.sumber').innerHTML = sumber[sumberIndex].toUpperCase();
             const url = apiUrl + sumber[sumberIndex] + '/' + slug;
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
+                    detailNews.querySelector('.newspaper').classList.remove('d-none');
                     document.getElementById('loading-detail').classList.remove('show');
                     document.getElementById('loading-detail').classList.add('hide');
 
-                    document.getElementById('detail-text').innerHTML = data.content;
+                    document.getElementById('detail-text').innerHTML = "<img src='" + data.image + "' class='mr-1'>" + data.content;
+                    detailNews.querySelector('.title').innerHTML = data.title;
                     resizeText({
-                        elements: document.querySelectorAll('.fit'),
+                        elements: detailNews.querySelectorAll('.fit-detail'),
                         step: 1,
                     });
+                    document.getElementById('detail-text').classList.add('columns-3')
+                }).catch((error) => {
+                    alert('Error: ' + error);
+                    console.error('Error:', error);
+
+                    detailNews.querySelector('.newspaper').classList.remove('d-none');
+                    document.getElementById('loading-detail').classList.remove('show');
+                    document.getElementById('loading-detail').classList.add('hide');
+                    
+                    document.getElementById('detail-text').innerHTML = error;
+                    detailNews.querySelector('.title').innerHTML = error;
+                    resizeText({
+                        elements: detailNews.querySelectorAll('.fit-detail'),
+                        step: 1,
+                    });
+                    document.getElementById('detail-text').classList.add('columns-3')
+
                 });
         }
 
