@@ -361,7 +361,7 @@
                 </svg></button>
 
         </div>
-        <div id="tabs">
+        <div id="tabs" class="d-none">
             <div id="back-tab" class="bounce" style="display: none;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 48 48">
                     <path fill="currentColor" fill-rule="evenodd" stroke="currentColor" stroke-linejoin="round"
@@ -813,9 +813,9 @@
         }
 
         window.addEventListener("load", (event) => {
-            console.log("page is fully loaded");
             getBerita(-1);
             document.getElementById('loading-page').classList.add('d-none');
+            tabParent.classList.remove('d-none');
         });
 
 
