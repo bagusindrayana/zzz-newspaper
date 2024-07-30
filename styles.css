@@ -1371,7 +1371,8 @@ a.link:focus {
 #detail-text {
     margin-top: min(16px,2%);
     width: 100%;
-    columns: 3;
+    columns: 2;
+    column-fill: auto;
     column-rule: 4px solid #141714;
 }
 
@@ -1501,9 +1502,9 @@ a.link:focus {
 /* tablet screen */
 
 @media screen and (max-width: 1024px) {
-    #detail-text {
+    /* #detail-text {
         columns: 2;
-    }
+    } */
     .box .item {
         padding: 4px;
     }

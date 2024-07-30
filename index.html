@@ -448,7 +448,7 @@
         <div class="flex" style="justify-content: center; align-items: center;">
             <span class="loader-page mr-1"></span> Loading...
         </div>
-        
+
     </div>
 
     <script>
@@ -543,6 +543,9 @@
 
             setTimeout(() => {
                 detailNews.querySelector('.newspaper').classList.add('d-none');
+                detailNews.querySelector('.content').removeAttribute('style');
+                detailNews.querySelector('#detail-text').removeAttribute('style');
+                detailNews.querySelector('#detail-text').innerHTML = '';
             }, 500);
         });
 
@@ -766,7 +769,7 @@
         function getDetail(slug) {
             detailNews.querySelector('.content').removeAttribute('style');
             detailNews.querySelector('#detail-text').removeAttribute('style');
-            detailNews.querySelector('#detail-text').innerHTML = 'Loading...';
+            detailNews.querySelector('#detail-text').innerHTML = '';
 
             document.getElementById('loading-detail').classList.remove('hide');
             document.getElementById('loading-detail').classList.add('show');
@@ -794,7 +797,7 @@
                         elements: detailNews.querySelectorAll('.fit-detail'),
                         step: 1,
                     });
-                    document.getElementById('detail-text').classList.add('columns-3')
+                    // document.getElementById('detail-text').classList.add('columns-3')
                 }).catch((error) => {
                     alert('Error: ' + error);
                     console.error('Error:', error);
@@ -814,7 +817,7 @@
                         elements: detailNews.querySelectorAll('.fit-detail'),
                         step: 1,
                     });
-                    document.getElementById('detail-text').classList.add('columns-3')
+                    // document.getElementById('detail-text').classList.add('columns-3')
 
                 });
         }
