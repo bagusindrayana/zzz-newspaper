@@ -33,7 +33,7 @@
             </div>
 
             <div class="heading-1">
-                <div class="heading-red heading kategori fit">NASIONAL</div>
+                <div class="heading-red heading kategori">NASIONAL</div>
 
             </div>
             <div class="box box-2 bg-dark">
@@ -61,7 +61,7 @@
             <div class="heading-1">
                 <div class="stripe"></div>
                 <div class="heading-white">
-                    <div class="heading fit">
+                    <div class="heading">
                         BERITA HARI INI
                     </div>
                 </div>
@@ -429,7 +429,7 @@
                 </div>
 
                 <div class="heading-1  mb-1 w-auto">
-                    <div class="heading-red heading title fit-detail">....</div>
+                    <div class="heading-red heading-detail title">....</div>
 
                 </div>
                 <div class="content  mb-1">
@@ -442,6 +442,13 @@
             <div class="loader"></div>
         </div>
 
+    </div>
+
+    <div id="loading-page">
+        <div class="flex" style="justify-content: center; align-items: center;">
+            <span class="loader-page mr-1"></span> Loading...
+        </div>
+        
     </div>
 
     <script>
@@ -506,7 +513,7 @@
 
                 // revert to last state where no overflow happened
                 el.style.fontSize = `${i - step}${unit}`;
-                el.style.transform = `scale(${scale})`;
+                el.style.transform = `scale(${scale}) translateY(-2%)`;
 
                 // var minMargin = i * marginOffset;
                 // parent.style.marginTop = minMargin + 'px';
@@ -521,14 +528,14 @@
         }
 
         document.getElementById('back-detail').addEventListener('click', () => {
-            
-            
+
+
             allNews.classList.add('close-detail');
             allNews.classList.remove('open-detail');
 
             detailNews.classList.add('close-detail');
             detailNews.classList.remove('open-detail');
-            
+
             document.body.classList.add('move-up-bg');
             document.body.classList.remove('move-down-bg');
 
@@ -694,11 +701,11 @@
             onClickLink();
 
             setTimeout(() => {
-                // resizeText({
-                //     elements: document.querySelectorAll('.heading'),
-                //     step: 1,
-                //     scale: 0.99
-                // });
+                resizeText({
+                    elements: document.querySelectorAll('.heading'),
+                    step: 1,
+                    scale: 0.99
+                });
 
                 resizeText({
                     elements: document.querySelectorAll('.fit'),
@@ -772,6 +779,11 @@
                     document.getElementById('detail-text').innerHTML = "<img src='" + data.image + "' class='mr-1'>" + data.content;
                     detailNews.querySelector('.title').innerHTML = data.title;
                     resizeText({
+                        elements: document.querySelectorAll('.heading-detail'),
+                        step: 1,
+                        scale: 0.99
+                    });
+                    resizeText({
                         elements: detailNews.querySelectorAll('.fit-detail'),
                         step: 1,
                     });
@@ -783,9 +795,14 @@
                     detailNews.querySelector('.newspaper').classList.remove('d-none');
                     document.getElementById('loading-detail').classList.remove('show');
                     document.getElementById('loading-detail').classList.add('hide');
-                    
+
                     document.getElementById('detail-text').innerHTML = error;
                     detailNews.querySelector('.title').innerHTML = error;
+                    resizeText({
+                        elements: document.querySelectorAll('.heading-detail'),
+                        step: 1,
+                        scale: 0.99
+                    });
                     resizeText({
                         elements: detailNews.querySelectorAll('.fit-detail'),
                         step: 1,
@@ -798,6 +815,7 @@
         window.addEventListener("load", (event) => {
             console.log("page is fully loaded");
             getBerita(-1);
+            document.getElementById('loading-page').classList.add('d-none');
         });
 
 
