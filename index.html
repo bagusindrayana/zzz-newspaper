@@ -768,6 +768,8 @@
 
         function getDetail(slug) {
             detailNews.querySelector('.content').removeAttribute('style');
+
+            detailNews.querySelector('.title').innerHTML = '';
             detailNews.querySelector('#detail-text').removeAttribute('style');
             detailNews.querySelector('#detail-text').innerHTML = '';
 
