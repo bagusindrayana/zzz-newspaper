@@ -764,11 +764,18 @@
 
 
         function getDetail(slug) {
+            detailNews.querySelector('.content').removeAttribute('style');
+            detailNews.querySelector('#detail-text').removeAttribute('style');
+            detailNews.querySelector('#detail-text').innerHTML = 'Loading...';
 
             document.getElementById('loading-detail').classList.remove('hide');
             document.getElementById('loading-detail').classList.add('show');
             detailNews.querySelector('.sumber').innerHTML = sumber[sumberIndex].toUpperCase();
-            const url = apiUrl + sumber[sumberIndex] + slug;
+            //if first slug contains / then remove it
+            if (slug.charAt(0) == '/') {
+                slug = slug.substring(1);
+            }
+            const url = apiUrl + sumber[sumberIndex] + "/" + slug;
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
