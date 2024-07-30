@@ -758,7 +758,17 @@
                     .then(response => response.json())
                     .then(data => {
 
-                        parseData(data, kategoriIndex);
+                        try {
+                            if (data.length > 0) {
+                                parseData(data, kategoriIndex);
+                            }
+                        } catch (error) {
+                            alert('Error: ' + error);
+                            console.error('Error:', error);
+                        }
+                    }).catch((error) => {
+                        alert('Error: ' + error);
+                        console.error('Error:', error);
                     });
             }, (100 * news.length) + 500);
 
