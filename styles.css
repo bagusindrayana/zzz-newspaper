@@ -635,7 +635,6 @@ body {
     background: #E6B098;
     display: flex;
     width: 40%;
-    max-width: 600px;
     height: 80vh;
     /* border: 1px solid black; */
     border-radius: 6px;
@@ -746,6 +745,7 @@ body {
 
 
 .tab .label {
+    font-size: 2rem;
     transform: rotate(-90deg);
 }
 
@@ -1502,6 +1502,16 @@ a.link:focus {
       transform: rotate(360deg);
     }
   } 
+
+  @media screen and (max-width: 1924px) {
+    #tabs {
+        width: min(40%, 600px);
+    }
+
+    .tab .label {
+        font-size: 1.5rem;
+    }
+  }
 
 /* tablet screen */
 
